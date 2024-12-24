@@ -13,6 +13,8 @@
     <script>
         function requisitarPagina(url) {
 
+            document.getElementById('conteudo').innerHTML=''
+
             //incluir gif de loading
             if (!document.getElementById('loading')) {
                 let imgLoading = document.createElement('img')
@@ -31,11 +33,20 @@
             ajax.open('GET', url)
             // console.log(ajax.readyState)
             ajax.onreadystatechange = function () {
-                if (ajax.readyState == 4) {
-                    console.log('requisicao finalizada com sucesso')
-                    document.getElementById('loading').remove()
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    document.getElementById('conteudo').innerHTML = ajax.responseText
+                    console.log('O status da requisição é: ', ajax.status)
+                   // document.getElementById('loading').remove()
 
                 }
+                else if (ajax.readyState == 4 && ajax.status == 404) {
+                    document.getElementById('conteudo').innerHTML = 'tente novamente mais tarde'
+                    console.log('O status da requisição é: ', ajax.status)
+
+                  //  document.getElementById('loading').remove()
+
+                }
+
 
             }
             ajax.send()
