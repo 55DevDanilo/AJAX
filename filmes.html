@@ -52,17 +52,26 @@
 
                         let genero = ''
                         for (let g in item.genero) {
+                            if (genero) genero += ', '
+                            
                             genero+=(item.genero[g]['#text'])
                         }
-//pausado 16:42
+
                         let p3 = document.createElement('p')
-                        p3.innerHTML = '<strong>Gênero:</strong>Gênero de filme ' + item['genero']['#text']
+                        p3.innerHTML = '<strong>Gênero:</strong> ' + genero
+
+                        let elenco = ''
+                        for (let e in item.elenco.ator) {
+                            if (elenco) elenco += ', '
+                            
+                            elenco+=(item.elenco.ator[e]['#text'])
+                        }
 
                         let p4 = document.createElement('p')
-                        p4.innerHTML = 'Elenco:</strong>Elenco de filme ' + item['elenco']['#text']
+                        p4.innerHTML = '<strong>Elenco:</strong> ' + elenco
 
                         let p5 = document.createElement('p')
-                        p5.innerHTML = '<strong>Data de lançamento:</strong>Data de lançamenmto do filme '
+                        p5.innerHTML = '<strong>Data de lançamento:</strong> '+item.dataLancamento['#text']+'('+item.dataLancamento['@attributes']['pais'] +')'
 
                         let hr = document.createElement('hr')
 
