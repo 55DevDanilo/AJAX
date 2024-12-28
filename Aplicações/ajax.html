@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+
+<body>
+    <div id="testeAjax">
+        <h1>XMLHttpRequest Object</h1>
+        <button type="button" onclick="changeObj()">Mudar conteúdo </button>
+    </div>
+
+
+    </div>
+
+    <script>
+        function changeObj() {
+
+            let httpRequest = new XMLHttpRequest()
+            // propriedade onreadystatechange que é disparada sempre que nossa requisição sofre alguma alteração durante seu processamen
+            httpRequest.onreadystatechange = function () {
+
+                //A propriedade onreadystatechange define uma função a ser executada quando o readyState muda
+                // ela irá processar a resposta do servidor.
+
+
+                if ((httpRequest.readyState === 4) && (httpRequest.status === 200)) {
+                    //* readyState é algo como "estado de prontidão", mostra qual é o status do processo que está sendo executado e se está sendo executado
+                    document.getElementById("testeAjax").innerHTML=httpRequest.responseText
+
+
+                }
+                //------------------------------------------------------
+
+                //depois de ter declarado o que vai acontecer assim que receber a resposta, você precisa realmente fazer a requisição. Você precisa chamar os métodos open() e send() da classe requisição HTTP, dessa forma
+
+
+
+            }
+            // true -> assincrona , false -> sincrona, por padrão ela já é assincrona não sendo necesária a menção true
+            httpRequest.open("GET", "ajaxtest.txt",true)
+            httpRequest.send()
+         
+
+        }
+    </script>
+    </head>
+
+
+</body>
+
+</html>
